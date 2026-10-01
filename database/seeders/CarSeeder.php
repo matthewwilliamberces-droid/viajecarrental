@@ -1,0 +1,167 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use App\Models\Car;
+
+class CarSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $cars = [
+            [
+                'name' => 'Suzuki Jimny AllGrip 4x4',
+                'category' => 'island',
+                'categoryName' => 'Island 4x4',
+                'dailyRate' => 2799,
+                'rating' => 4.99,
+                'reviews' => 215,
+                'seats' => 4,
+                'bags' => 2,
+                'transmission' => 'Automatic',
+                'fuel' => 'Petrol',
+                'eco' => '14 km/L',
+                'image' => 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1200&auto=format&fit=crop',
+                'badge' => 'Island Favorite',
+                'badgeColor' => 'bg-sunset-gold',
+            ],
+            [
+                'name' => 'Toyota HiAce Super Grandia VIP',
+                'category' => 'van',
+                'categoryName' => 'Executive Van',
+                'dailyRate' => 6499,
+                'rating' => 4.98,
+                'reviews' => 320,
+                'seats' => 10,
+                'bags' => 7,
+                'transmission' => 'Automatic',
+                'fuel' => 'Diesel',
+                'eco' => '11 km/L',
+                'image' => 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1200&auto=format&fit=crop',
+                'badge' => 'Balikbayan Choice',
+                'badgeColor' => 'bg-viaje-400',
+            ],
+            [
+                'name' => 'Toyota Fortuner GR-Sport 4x4',
+                'category' => 'suv',
+                'categoryName' => '7-Seater 4x4 SUV',
+                'dailyRate' => 4199,
+                'rating' => 4.97,
+                'reviews' => 180,
+                'seats' => 7,
+                'bags' => 5,
+                'transmission' => 'Automatic',
+                'fuel' => 'Diesel',
+                'eco' => '13 km/L',
+                'image' => 'https://images.unsplash.com/photo-1520031441872-265e4ff70366?q=80&w=1200&auto=format&fit=crop',
+                'badge' => 'Provincial Cruiser',
+                'badgeColor' => 'bg-ocean-400',
+            ],
+            [
+                'name' => 'Toyota Land Cruiser Prado VX',
+                'category' => 'luxury',
+                'categoryName' => 'VIP Luxury 4x4',
+                'dailyRate' => 14500,
+                'rating' => 5.00,
+                'reviews' => 64,
+                'seats' => 7,
+                'bags' => 6,
+                'transmission' => 'Automatic',
+                'fuel' => 'Diesel',
+                'eco' => '10 km/L',
+                'image' => 'https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=1200&auto=format&fit=crop',
+                'badge' => 'Presidential VIP',
+                'badgeColor' => 'bg-sunset-amber',
+            ],
+            [
+                'name' => 'Ford Everest Titanium 4x4',
+                'category' => 'suv',
+                'categoryName' => '7-Seater SUV',
+                'dailyRate' => 4499,
+                'rating' => 4.95,
+                'reviews' => 142,
+                'seats' => 7,
+                'bags' => 5,
+                'transmission' => 'Automatic',
+                'fuel' => 'Diesel',
+                'eco' => '12 km/L',
+                'image' => 'https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=1200&auto=format&fit=crop',
+                'badge' => 'Family Comfort',
+                'badgeColor' => 'bg-viaje-400',
+            ],
+            [
+                'name' => 'Hyundai Staria Lounge 7-Seater',
+                'category' => 'van',
+                'categoryName' => 'Futuristic VIP Van',
+                'dailyRate' => 6999,
+                'rating' => 4.98,
+                'reviews' => 95,
+                'seats' => 7,
+                'bags' => 6,
+                'transmission' => 'Automatic',
+                'fuel' => 'Diesel',
+                'eco' => '12 km/L',
+                'image' => 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1200&auto=format&fit=crop',
+                'badge' => 'Captain Seats',
+                'badgeColor' => 'bg-ocean-400',
+            ],
+            [
+                'name' => 'Toyota Innova Zenix Hybrid',
+                'category' => 'electric',
+                'categoryName' => 'Hybrid 7-Seater',
+                'dailyRate' => 3499,
+                'rating' => 4.93,
+                'reviews' => 210,
+                'seats' => 7,
+                'bags' => 4,
+                'transmission' => 'Automatic',
+                'fuel' => 'Hybrid',
+                'eco' => '23 km/L',
+                'image' => 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=1200&auto=format&fit=crop',
+                'badge' => 'Ultra Efficient',
+                'badgeColor' => 'bg-viaje-400',
+            ],
+            [
+                'name' => 'BYD Atto 3 Extended Range',
+                'category' => 'electric',
+                'categoryName' => 'Pure Electric Crossover',
+                'dailyRate' => 3899,
+                'rating' => 4.94,
+                'reviews' => 78,
+                'seats' => 5,
+                'bags' => 4,
+                'transmission' => 'Automatic',
+                'fuel' => 'Electric',
+                'eco' => '480 km Range',
+                'image' => 'https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=1200&auto=format&fit=crop',
+                'badge' => 'Zero Emission',
+                'badgeColor' => 'bg-viaje-400',
+            ],
+            [
+                'name' => 'Nissan Navara PRO-4X Offroad',
+                'category' => 'island',
+                'categoryName' => '4x4 Double Cab',
+                'dailyRate' => 3699,
+                'rating' => 4.96,
+                'reviews' => 132,
+                'seats' => 5,
+                'bags' => 6,
+                'transmission' => 'Automatic',
+                'fuel' => 'Diesel',
+                'eco' => '13 km/L',
+                'image' => 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=1200&auto=format&fit=crop',
+                'badge' => 'Adventure 4x4',
+                'badgeColor' => 'bg-sunset-amber',
+            ],
+        ];
+
+        foreach ($cars as $car) {
+            Car::create($car);
+        }
+    }
+}
