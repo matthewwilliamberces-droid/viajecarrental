@@ -162,6 +162,15 @@ $defaultCars = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>VIAJE | Tropical Car Rental & Island Road Trips Philippines</title>
+    <meta name="description" content="Premium car rental in the Philippines. Self-drive 4x4 SUVs, executive vans, and island road trip vehicles with instant booking, airport delivery, and comprehensive insurance.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url()->current() }}">
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="VIAJE | Tropical Car Rental & Island Road Trips Philippines">
+    <meta property="og:description" content="Premium car rental in the Philippines. Self-drive 4x4 SUVs, executive vans, and island road trip vehicles with instant booking and airport delivery.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
     
     <!-- Google Fonts: Plus Jakarta Sans for high-character modern typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -310,7 +319,7 @@ $defaultCars = [
                 <p class="text-white font-bold mb-0.5" x-text="toastMessage"></p>
                 <p class="text-zinc-400 font-medium" x-text="toastTime"></p>
             </div>
-            <button @click="toastVisible = false" class="text-zinc-500 hover:text-white transition">
+            <button @click="toastVisible = false" aria-label="Dismiss notification" class="text-zinc-400 hover:text-white transition">
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
@@ -375,7 +384,7 @@ $defaultCars = [
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden">
-                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center text-white">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" aria-label="Toggle navigation menu" class="w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center text-white">
                         <i class="fa-solid fa-bars text-lg" x-show="!mobileMenuOpen"></i>
                         <i class="fa-solid fa-xmark text-lg" x-show="mobileMenuOpen" x-cloak></i>
                     </button>
@@ -566,7 +575,7 @@ $defaultCars = [
                         { name: 'Araneta Cubao', icon: 'fa-ticket' },
                         { name: 'Our warehouse at Mandaluyong', icon: 'fa-warehouse' }
                     ]">
-                        <button @click="selectedHub = index"
+                        <button @click="selectedHub = index" :aria-label="hub.name"
                                 class="w-full text-left px-6 py-5 rounded-[1.5rem] transition-all border font-bold flex items-center justify-between group"
                                 :class="selectedHub === index ? 'bg-white text-zinc-950 border-white shadow-[0_10px_30px_-10px_rgba(255,255,255,0.3)]' : 'glass-panel text-zinc-400 border-white/5 hover:text-white hover:bg-white/5'">
                             <span class="flex items-center gap-4">
@@ -701,10 +710,10 @@ $defaultCars = [
                 </div>
                 
                 <div class="flex items-center gap-3">
-                    <button @click="prev()" class="w-14 h-14 rounded-full glass-panel flex items-center justify-center text-white hover:bg-white hover:text-zinc-950 transition-colors shadow-lg group border-white/10">
+                    <button @click="prev()" aria-label="Previous review" class="w-14 h-14 rounded-full glass-panel flex items-center justify-center text-white hover:bg-white hover:text-zinc-950 transition-colors shadow-lg group border-white/10">
                         <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-1"></i>
                     </button>
-                    <button @click="next()" class="w-14 h-14 rounded-full glass-panel flex items-center justify-center text-white hover:bg-white hover:text-zinc-950 transition-colors shadow-lg group border-white/10">
+                    <button @click="next()" aria-label="Next review" class="w-14 h-14 rounded-full glass-panel flex items-center justify-center text-white hover:bg-white hover:text-zinc-950 transition-colors shadow-lg group border-white/10">
                         <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
                     </button>
                 </div>
@@ -726,9 +735,9 @@ $defaultCars = [
                             <p class="text-zinc-200 text-xl md:text-2xl font-serif italic leading-relaxed mb-10 tracking-wide" x-text="'“' + review.comment + '”'"></p>
                             
                             <div class="flex items-center gap-5 pt-6 border-t border-white/10">
-                                <img :src="review.avatar" class="w-14 h-14 rounded-full object-cover grayscale opacity-90 border-2 border-white/10">
+                                <img :src="review.avatar" :alt="review.name" width="56" height="56" loading="lazy" decoding="async" class="w-14 h-14 rounded-full object-cover grayscale opacity-90 border-2 border-white/10">
                                 <div>
-                                    <h4 class="font-heading font-bold text-white text-base tracking-tight" x-text="review.name"></h4>
+                                    <h3 class="font-heading font-bold text-white text-base tracking-tight" x-text="review.name"></h3>
                                     <p class="text-[10px] text-viaje-400 uppercase tracking-widest font-extrabold mt-1" x-text="review.role + ' · ' + review.car"></p>
                                 </div>
                             </div>
@@ -749,6 +758,7 @@ $defaultCars = [
                 <div class="flex items-center gap-2">
                     <button @click="goToPage(currentPage - 1)" 
                             :disabled="currentPage === 1"
+                            aria-label="Previous page"
                             class="w-10 h-10 rounded-xl bg-zinc-950 border border-viaje-500/30 flex items-center justify-center text-zinc-300 hover:text-white hover:border-viaje-400 transition disabled:opacity-50 disabled:cursor-not-allowed">
                         <i class="fa-solid fa-chevron-left text-xs"></i>
                     </button>
@@ -756,6 +766,7 @@ $defaultCars = [
                     <div class="flex items-center gap-1">
                         <template x-for="page in totalPages" :key="page">
                             <button @click="goToPage(page)"
+                                    :aria-label="'Go to page ' + page"
                                     :class="currentPage === page ? 'bg-viaje-600 text-white border-viaje-400' : 'bg-zinc-950 text-zinc-300 border-viaje-500/30 hover:border-viaje-400 hover:text-white'"
                                     class="w-10 h-10 rounded-xl border flex items-center justify-center text-xs font-bold transition"
                                     x-text="page">
@@ -765,6 +776,7 @@ $defaultCars = [
 
                     <button @click="goToPage(currentPage + 1)" 
                             :disabled="currentPage === totalPages"
+                            aria-label="Next page"
                             class="w-10 h-10 rounded-xl bg-zinc-950 border border-viaje-500/30 flex items-center justify-center text-zinc-300 hover:text-white hover:border-viaje-400 transition disabled:opacity-50 disabled:cursor-not-allowed">
                         <i class="fa-solid fa-chevron-right text-xs"></i>
                     </button>
@@ -847,15 +859,15 @@ $defaultCars = [
                         Built for the roads less taken—from NAIA to Batanes. Premium car rentals engineered for the Philippine landscape.
                     </p>
                     <div class="flex items-center gap-4 pt-4">
-                        <a href="#" class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-white hover:bg-white hover:text-zinc-950 transition-colors border-white/10"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-white hover:bg-white hover:text-zinc-950 transition-colors border-white/10"><i class="fa-brands fa-instagram text-lg"></i></a>
-                        <a href="#" class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-white hover:bg-white hover:text-zinc-950 transition-colors border-white/10"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#" aria-label="Follow Viaje on Facebook" class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-white hover:bg-white hover:text-zinc-950 transition-colors border-white/10"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Follow Viaje on Instagram" class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-white hover:bg-white hover:text-zinc-950 transition-colors border-white/10"><i class="fa-brands fa-instagram text-lg"></i></a>
+                        <a href="#" aria-label="Follow Viaje on TikTok" class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-white hover:bg-white hover:text-zinc-950 transition-colors border-white/10"><i class="fa-brands fa-tiktok"></i></a>
                     </div>
                 </div>
 
                 <!-- Luzon Fleet -->
                 <div>
-                    <h5 class="text-white font-extrabold font-heading text-lg mb-6 tracking-tight">Luzon Fleet</h5>
+                    <h3 class="text-white font-extrabold font-heading text-lg mb-6 tracking-tight">Luzon Fleet</h3>
                     <ul class="space-y-4 text-sm font-medium">
                         <li><a href="#" class="hover:text-viaje-400 transition-colors">Toyota Fortuner 4x4</a></li>
                         <li><a href="#" class="hover:text-viaje-400 transition-colors">Suzuki Jimny AllGrip</a></li>
@@ -866,7 +878,7 @@ $defaultCars = [
 
                 <!-- Hubs -->
                 <div>
-                    <h5 class="text-white font-extrabold font-heading text-lg mb-6 tracking-tight">Pickup Hubs</h5>
+                    <h3 class="text-white font-extrabold font-heading text-lg mb-6 tracking-tight">Pickup Hubs</h3>
                     <ul class="space-y-4 text-sm font-medium">
                         <li><a href="#" class="hover:text-viaje-400 transition-colors">Manila (NAIA T1-T4)</a></li>
                         <li><a href="#" class="hover:text-viaje-400 transition-colors">Clark Airport (CRK)</a></li>
@@ -877,13 +889,13 @@ $defaultCars = [
 
                 <!-- Contact & Support -->
                 <div>
-                    <h5 class="text-white font-extrabold font-heading text-lg mb-6 tracking-tight">24/7 Support</h5>
+                    <h3 class="text-white font-extrabold font-heading text-lg mb-6 tracking-tight">24/7 Support</h3>
                     <ul class="space-y-5 text-sm font-medium">
                         <li class="flex items-start gap-4">
                             <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-viaje-400 shrink-0">
                                 <i class="fa-solid fa-headset text-xs"></i>
                             </div>
-                            <span><span class="text-white font-bold block mb-0.5">24/7 Digital Concierge</span><span class="text-[10px] text-zinc-500 uppercase tracking-widest font-bold">Instant Online Booking</span></span>
+                            <span><span class="text-white font-bold block mb-0.5">24/7 Digital Concierge</span><span class="text-[10px] text-zinc-400 uppercase tracking-widest font-bold">Instant Online Booking</span></span>
                         </li>
                         <li class="flex items-start gap-4">
                             <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-viaje-400 shrink-0">
@@ -901,7 +913,7 @@ $defaultCars = [
                 </div>
             </div>
 
-            <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-bold uppercase tracking-wider text-zinc-600">
+            <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-bold uppercase tracking-wider text-zinc-400">
                 <p>&copy; 2026 Viaje Car Rental Philippines.</p>
                 <div class="flex gap-8">
                     <a href="#" class="hover:text-viaje-400 transition-colors">Privacy</a>
