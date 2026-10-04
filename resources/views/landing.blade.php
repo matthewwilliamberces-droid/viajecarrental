@@ -398,10 +398,10 @@ $defaultCars = [
 
                 <!-- Action Button & Hotline -->
                 <div class="hidden sm:flex items-center gap-4">
-                    <a href="tel:+639178888425" class="hidden xl:flex items-center gap-2 text-xs font-semibold text-viaje-200 hover:text-white">
-                        <i class="fa-solid fa-headset text-zinc-400"></i>
-                        <span>+63 (917) 888-VIAJE</span>
-                    </a>
+                    <div class="hidden xl:flex items-center gap-2 text-xs font-semibold text-viaje-300 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span>Instant Fleet Dispatch</span>
+                    </div>
                     
                     <a href="#fleet" 
                        class="relative group overflow-hidden rounded-2xl bg-gradient-to-r from-viaje-500 via-zinc-400 to-zinc-500 p-px font-bold text-white shadow-glow-emerald transition duration-300 hover:shadow-glow-emerald">
@@ -1253,12 +1253,12 @@ $defaultCars = [
                     <h4 class="font-heading font-bold text-white text-xs uppercase tracking-wider mb-4">Concierge Support</h4>
                     <ul class="space-y-3 text-xs text-zinc-300">
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-phone text-viaje-400"></i>
-                            <span>+63 (917) 888-8425</span>
+                            <i class="fa-solid fa-headset text-viaje-400"></i>
+                            <span>24/7 Digital Concierge</span>
                         </li>
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-envelope text-viaje-400"></i>
-                            <span>booking@viaje.ph</span>
+                            <i class="fa-solid fa-shield-halved text-viaje-400"></i>
+                            <span>Verified Island Fleet System</span>
                         </li>
                         <li class="flex items-center gap-2">
                             <i class="fa-solid fa-shield-halved text-zinc-400"></i>
@@ -1442,14 +1442,14 @@ $defaultCars = [
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-viaje-300 uppercase mb-1">Philippine Mobile / WhatsApp *</label>
-                                <input type="tel" x-model="renter.phone" required class="w-full bg-zinc-900 border border-viaje-500/30 rounded-xl px-4 py-2.5 text-xs text-white outline-none focus:border-viaje-400 font-medium" placeholder="+63 917 123 4567">
+                                <input type="tel" x-model="renter.phone" required class="w-full bg-zinc-900 border border-viaje-500/30 rounded-xl px-4 py-2.5 text-xs text-white outline-none focus:border-viaje-400 font-medium" placeholder="+63 9XX XXX XXXX">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-xs font-bold text-viaje-300 uppercase mb-1">Email Address (for voucher confirmation) *</label>
-                                <input type="email" x-model="renter.email" required class="w-full bg-zinc-900 border border-viaje-500/30 rounded-xl px-4 py-2.5 text-xs text-white outline-none focus:border-viaje-400 font-medium" placeholder="juandelacruz@gmail.com">
+                                <input type="email" x-model="renter.email" required class="w-full bg-zinc-900 border border-viaje-500/30 rounded-xl px-4 py-2.5 text-xs text-white outline-none focus:border-viaje-400 font-medium" placeholder="renter@example.com">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-viaje-300 uppercase mb-1">Arriving Flight Number (optional)</label>

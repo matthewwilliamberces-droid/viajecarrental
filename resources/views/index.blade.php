@@ -352,7 +352,7 @@ $defaultCars = [
                 <div class="hidden md:flex items-center gap-4">
                     <div class="flex flex-col items-end">
                         <span class="text-[9px] font-extrabold uppercase tracking-widest text-viaje-400">24/7 Concierge</span>
-                        <a href="tel:+639171234567" class="text-sm font-mono font-bold text-white hover:text-viaje-300 transition">+63 917 123 4567</a>
+                        <span class="text-xs font-mono font-bold text-emerald-400 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Instant Dispatch</span>
                     </div>
 
                     @auth
@@ -881,15 +881,15 @@ $defaultCars = [
                     <ul class="space-y-5 text-sm font-medium">
                         <li class="flex items-start gap-4">
                             <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-viaje-400 shrink-0">
-                                <i class="fa-solid fa-phone text-xs"></i>
+                                <i class="fa-solid fa-headset text-xs"></i>
                             </div>
-                            <span><a href="tel:+639171234567" class="hover:text-white transition-colors block mb-0.5">+63 917 123 4567</a><span class="text-[10px] text-zinc-500 uppercase tracking-widest font-bold">Hotline & Viber</span></span>
+                            <span><span class="text-white font-bold block mb-0.5">24/7 Digital Concierge</span><span class="text-[10px] text-zinc-500 uppercase tracking-widest font-bold">Instant Online Booking</span></span>
                         </li>
                         <li class="flex items-start gap-4">
                             <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-viaje-400 shrink-0">
-                                <i class="fa-solid fa-envelope text-xs"></i>
+                                <i class="fa-solid fa-shield-halved text-xs"></i>
                             </div>
-                            <a href="mailto:bookings@viaje.ph" class="hover:text-white transition-colors mt-1.5 block">bookings@viaje.ph</a>
+                            <span class="text-zinc-400 text-xs mt-1 block">Verified Island Fleet System</span>
                         </li>
                         <li class="flex items-start gap-4">
                             <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-viaje-400 shrink-0">
