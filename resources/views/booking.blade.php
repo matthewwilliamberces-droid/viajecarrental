@@ -15,7 +15,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Petrol',
         'eco' => '14 km/L',
-        'image' => 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Island Favorite',
         'badgeColor' => 'bg-zinc-800 text-zinc-300 border border-zinc-700',
     ],
@@ -32,7 +32,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Diesel',
         'eco' => '11 km/L',
-        'image' => 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Balikbayan Choice',
         'badgeColor' => 'bg-viaje-500',
     ],
@@ -49,7 +49,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Diesel',
         'eco' => '13 km/L',
-        'image' => 'https://images.unsplash.com/photo-1520031441872-265e4ff70366?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1520031441872-265e4ff70366?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Provincial Cruiser',
         'badgeColor' => 'bg-zinc-800 text-zinc-300 border border-zinc-700',
     ],
@@ -66,7 +66,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Diesel',
         'eco' => '10 km/L',
-        'image' => 'https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1563720223185-11003d516935?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Presidential VIP',
         'badgeColor' => 'bg-zinc-800 text-zinc-300 border border-zinc-700',
     ],
@@ -83,7 +83,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Diesel',
         'eco' => '12 km/L',
-        'image' => 'https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1550355291-bbee04a92027?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Family Comfort',
         'badgeColor' => 'bg-viaje-500',
     ],
@@ -100,7 +100,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Diesel',
         'eco' => '12 km/L',
-        'image' => 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Captain Seats',
         'badgeColor' => 'bg-zinc-800 text-zinc-300 border border-zinc-700',
     ],
@@ -117,7 +117,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Hybrid',
         'eco' => '23 km/L',
-        'image' => 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Ultra Efficient',
         'badgeColor' => 'bg-viaje-500',
     ],
@@ -134,7 +134,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Electric',
         'eco' => '480 km Range',
-        'image' => 'https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1617788138017-80ad40651399?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Zero Emission',
         'badgeColor' => 'bg-viaje-500',
     ],
@@ -151,7 +151,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Diesel',
         'eco' => '13 km/L',
-        'image' => 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Adventure 4x4',
         'badgeColor' => 'bg-zinc-800 text-zinc-300 border border-zinc-700',
     ],
@@ -171,15 +171,28 @@ $defaultCars = [
     <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Performance: Preconnect & DNS Prefetch to Critical CDNs -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
     
     <!-- Flatpickr for mm/dd/yyyy formatting -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css" media="print" onload="this.media='all'">
+    <script defer src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- FontAwesome Icons: Asynchronous Non-Blocking Load -->
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     
     <!-- Compiled Production Assets via Vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -671,7 +684,7 @@ $defaultCars = [
         <!-- Left Image Pane (Hidden on very small screens) -->
         <div class="hidden md:block w-2/5 relative bg-zinc-900 border-r border-white/5 p-8 flex flex-col justify-end">
             <div class="absolute inset-0">
-                <img :src="selectedCar?.image" :alt="selectedCar?.name || 'Selected Vehicle'" loading="lazy" decoding="async" class="w-full h-full object-cover opacity-50 mix-blend-luminosity">
+                <img :src="selectedCar?.image ? selectedCar.image.replace('w=1200', 'w=800&q=75') : ''" :alt="selectedCar?.name || 'Selected Vehicle'" loading="lazy" decoding="async" class="w-full h-full object-cover opacity-50 mix-blend-luminosity">
                 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent"></div>
             </div>
             
@@ -1014,7 +1027,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Petrol',
         'eco' => '14 km/L',
-        'image' => 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Island Favorite',
         'badgeColor' => 'bg-zinc-800 text-zinc-300 border border-zinc-700',
     ],
@@ -1031,7 +1044,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Diesel',
         'eco' => '11 km/L',
-        'image' => 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Balikbayan Choice',
         'badgeColor' => 'bg-viaje-500',
     ],
@@ -1048,7 +1061,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Diesel',
         'eco' => '13 km/L',
-        'image' => 'https://images.unsplash.com/photo-1520031441872-265e4ff70366?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1520031441872-265e4ff70366?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Provincial Cruiser',
         'badgeColor' => 'bg-zinc-800 text-zinc-300 border border-zinc-700',
     ],
@@ -1065,7 +1078,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Diesel',
         'eco' => '10 km/L',
-        'image' => 'https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1563720223185-11003d516935?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Presidential VIP',
         'badgeColor' => 'bg-zinc-800 text-zinc-300 border border-zinc-700',
     ],
@@ -1082,7 +1095,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Diesel',
         'eco' => '12 km/L',
-        'image' => 'https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1550355291-bbee04a92027?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Family Comfort',
         'badgeColor' => 'bg-viaje-500',
     ],
@@ -1099,7 +1112,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Diesel',
         'eco' => '12 km/L',
-        'image' => 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Captain Seats',
         'badgeColor' => 'bg-zinc-800 text-zinc-300 border border-zinc-700',
     ],
@@ -1116,7 +1129,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Hybrid',
         'eco' => '23 km/L',
-        'image' => 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Ultra Efficient',
         'badgeColor' => 'bg-viaje-500',
     ],
@@ -1133,7 +1146,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Electric',
         'eco' => '480 km Range',
-        'image' => 'https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1617788138017-80ad40651399?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Zero Emission',
         'badgeColor' => 'bg-viaje-500',
     ],
@@ -1150,7 +1163,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Diesel',
         'eco' => '13 km/L',
-        'image' => 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Adventure 4x4',
         'badgeColor' => 'bg-zinc-800 text-zinc-300 border border-zinc-700',
     ],

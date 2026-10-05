@@ -13,7 +13,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Petrol',
         'eco' => '14 km/L',
-        'image' => 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Island Favorite',
         'badgeColor' => 'bg-zinc-800 text-zinc-300 border border-zinc-700',
     ],
@@ -30,7 +30,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Diesel',
         'eco' => '11 km/L',
-        'image' => 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Balikbayan Choice',
         'badgeColor' => 'bg-viaje-500',
     ],
@@ -47,7 +47,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Diesel',
         'eco' => '13 km/L',
-        'image' => 'https://images.unsplash.com/photo-1520031441872-265e4ff70366?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1520031441872-265e4ff70366?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Provincial Cruiser',
         'badgeColor' => 'bg-zinc-800 text-zinc-300 border border-zinc-700',
     ],
@@ -64,7 +64,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Diesel',
         'eco' => '10 km/L',
-        'image' => 'https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1563720223185-11003d516935?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Presidential VIP',
         'badgeColor' => 'bg-zinc-800 text-zinc-300 border border-zinc-700',
     ],
@@ -81,7 +81,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Diesel',
         'eco' => '12 km/L',
-        'image' => 'https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1550355291-bbee04a92027?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Family Comfort',
         'badgeColor' => 'bg-viaje-500',
     ],
@@ -98,7 +98,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Diesel',
         'eco' => '12 km/L',
-        'image' => 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Captain Seats',
         'badgeColor' => 'bg-zinc-800 text-zinc-300 border border-zinc-700',
     ],
@@ -115,7 +115,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Hybrid',
         'eco' => '23 km/L',
-        'image' => 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Ultra Efficient',
         'badgeColor' => 'bg-viaje-500',
     ],
@@ -132,7 +132,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Electric',
         'eco' => '480 km Range',
-        'image' => 'https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1617788138017-80ad40651399?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Zero Emission',
         'badgeColor' => 'bg-viaje-500',
     ],
@@ -149,7 +149,7 @@ $defaultCars = [
         'transmission' => 'Automatic',
         'fuel' => 'Diesel',
         'eco' => '13 km/L',
-        'image' => 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=1200&auto=format&fit=crop',
+        'image' => 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=75&w=800&auto=format&fit=crop',
         'badge' => 'Adventure 4x4',
         'badgeColor' => 'bg-zinc-800 text-zinc-300 border border-zinc-700',
     ],
@@ -175,10 +175,21 @@ $defaultCars = [
     <!-- Google Fonts: Plus Jakarta Sans for high-character modern typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Performance: Preconnect & DNS Prefetch to Critical CDNs -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
     
     <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     
     <!-- Compiled Production Assets via Vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -489,7 +500,7 @@ $defaultCars = [
 
                     <!-- Main Hero Image Box -->
                     <div class="absolute left-8 bottom-12 w-[85%] h-[75%] rounded-[2.5rem] overflow-hidden shadow-2xl z-10 transform -rotate-3 transition-transform duration-700 hover:-rotate-1 border border-white/10">
-                        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=800&auto=format&fit=crop" alt="4x4 SUV in Philippines" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=75&w=800&auto=format&fit=crop" fetchpriority="high" decoding="async" alt="4x4 SUV in Philippines" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-80"></div>
                         <div class="absolute bottom-6 left-6 right-6">
                             <p class="text-xs font-bold uppercase tracking-widest text-viaje-400 mb-1">Featured Class</p>
@@ -594,16 +605,16 @@ $defaultCars = [
                     <!-- Background Images -->
                     <div class="absolute inset-0 z-0 bg-zinc-950">
                         <template x-for="(bg, index) in [
-                            'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1600&auto=format&fit=crop',
-                            'https://mandaluyong.gov.ph/storage/2024/09/image_2024-09-04_113616899-1024x509.png',
+                            'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=75&w=1000&auto=format&fit=crop',
+                            'https://images.unsplash.com/photo-1518684079-3c830dcef090?q=75&w=1000&auto=format&fit=crop',
                             'https://www.discoverthephilippines.com/wp-content/uploads/2022/05/article-cover-photo-mall-of-asia.jpg',
                             'https://i0.wp.com/live.staticflickr.com/65535/51137109742_02212fb996_b.jpg?w=960&ssl=1',
-                            'https://img.peerspace.com/image/upload/f_auto,q_auto,dpr_auto,w_3840/t2vsni4dqxzdwmspq4y8'
+                            'https://img.peerspace.com/image/upload/f_auto,q_auto,dpr_auto,w_1000/t2vsni4dqxzdwmspq4y8'
                         ]">
-                            <img :src="bg" 
+                            <img :src="bg" loading="lazy" decoding="async" aria-hidden="true"
                                  class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out mix-blend-luminosity" 
                                  :class="selectedHub === index ? 'opacity-80' : 'opacity-0'" 
-                                 alt="Hub Background">
+                                 alt="">
                         </template>
                         <!-- Dramatic Overlay for text readability -->
                         <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/40 to-transparent"></div>

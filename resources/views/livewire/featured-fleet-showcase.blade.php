@@ -1,4 +1,4 @@
-﻿<div x-data="featuredShowcase(@js($featuredCars))" class="relative w-full h-[600px] sm:h-[700px] overflow-hidden bg-zinc-950 group border-b border-viaje-500/20">
+<div x-data="featuredShowcase(@js($featuredCars))" class="relative w-full h-[600px] sm:h-[700px] overflow-hidden bg-zinc-950 group border-b border-viaje-500/20">
     
     <!-- Background Images (Fading & Blurred) -->
     <template x-for="(car, index) in cars" :key="'bg-'+car.id">
@@ -10,7 +10,7 @@
              x-transition:leave-start="opacity-100 scale-100"
              x-transition:leave-end="opacity-0 scale-95"
              class="absolute inset-0 z-0">
-            <img :src="car.image" :alt="car.name" class="w-full h-full object-cover opacity-20 blur-2xl">
+            <img :src="car.image ? car.image.replace('w=1200', 'w=400&q=50') : ''" alt="" aria-hidden="true" class="w-full h-full object-cover opacity-20 blur-2xl">
             <!-- Overlay Gradient -->
             <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent"></div>
             <div class="absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/50 to-transparent"></div>
@@ -34,7 +34,7 @@
                          class="absolute inset-0 flex flex-col justify-center">
                         
                         <div>
-                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-800 text-zinc-300 border border-zinc-700 text-zinc-950 text-xs font-bold uppercase tracking-wider mb-4">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-800/90 text-zinc-200 border border-zinc-700 text-xs font-bold uppercase tracking-wider mb-4">
                                 <i class="fa-solid fa-star text-[10px]"></i> Featured Model
                             </div>
                             
@@ -83,7 +83,7 @@
                          x-transition:leave-end="opacity-0 -translate-x-12 scale-105"
                          class="absolute inset-0 flex items-center justify-center">
                         <div class="relative w-full h-full rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 group-hover:border-viaje-500/30 transition-colors duration-700">
-                            <img :src="car.image" :alt="car.name" class="w-full h-full object-cover transition-transform duration-10000 group-hover:scale-110">
+                            <img :src="car.image ? car.image.replace('w=1200', 'w=800&q=75') : ''" :alt="car.name" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-10000 group-hover:scale-110">
                             <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent"></div>
                             
                             <!-- Badges overlay -->
@@ -107,6 +107,7 @@
     <div class="absolute bottom-8 left-0 right-0 z-20 flex justify-center gap-3">
         <template x-for="(car, index) in cars" :key="'dot-'+car.id">
             <button @click="goToSlide(index)" 
+                    :aria-label="'Go to slide ' + (index + 1) + ': ' + car.name"
                     class="w-3 h-3 rounded-full transition-all duration-300"
                     :class="activeSlide === index ? 'bg-viaje-500 scale-125 shadow-glow-emerald' : 'bg-white/30 hover:bg-white/50'">
             </button>
