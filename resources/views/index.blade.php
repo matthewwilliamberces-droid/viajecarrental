@@ -175,9 +175,7 @@ $defaultCars = [
     <!-- Google Fonts: Plus Jakarta Sans for high-character modern typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Performance: Preconnect & DNS Prefetch to Critical CDNs -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <!-- Performance: DNS Prefetch to Critical CDNs -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">

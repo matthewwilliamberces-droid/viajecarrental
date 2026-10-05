@@ -1,5 +1,3 @@
-@ph
-<!DOCTYPE html>
 @php
 $defaultCars = [
     [
@@ -158,6 +156,7 @@ $defaultCars = [
 ];
 @endphp
 
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -171,10 +170,7 @@ $defaultCars = [
     <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Performance: Preconnect & DNS Prefetch to Critical CDNs -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <!-- Performance: DNS Prefetch to Secondary CDNs -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
@@ -258,7 +254,7 @@ $defaultCars = [
             border-radius: 50% !important;
         }
         .crossed-out::after {
-            content: '×';
+            content: 'Ã—';
             position: absolute;
             top: 48%;
             left: 50%;
@@ -353,7 +349,7 @@ $defaultCars = [
                 <p class="text-white font-bold mb-0.5" x-text="toast.title"></p>
                 <p class="text-zinc-400 font-medium" x-text="toast.message"></p>
             </div>
-            <button @click="toast.visible = false" aria-label="Dismiss notification" class="text-zinc-500 hover:text-white transition">
+            <button @click="toast.visible = false" aria-label="Dismiss notification" class="text-zinc-400 hover:text-white transition">
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
@@ -467,24 +463,24 @@ $defaultCars = [
 
         <div class="flex flex-col lg:flex-row gap-8 items-start">
             
-            <!-- LEFT SIDEBAR: FILTERS (30%) -->
-            <div class="w-full lg:w-1/3 xl:w-1/4 sticky top-28 glass-panel p-6 rounded-3xl border border-white/5 space-y-6 animate-[fade-in-up_0.8s_ease-out_0.2s_forwards] opacity-0">
+            <!-- LEFT SIDEBAR: FILTERS (30%) - Hidden on mobile to prevent filter stacking clutter -->
+            <div class="hidden lg:block lg:w-1/3 xl:w-1/4 sticky top-28 glass-panel p-6 rounded-3xl border border-white/5 space-y-6 animate-[fade-in-up_0.8s_ease-out_0.2s_forwards] opacity-0">
                 
-                <h3 class="text-white font-bold tracking-wide text-sm uppercase">Refine Search</h3>
+                <h2 class="text-white font-bold tracking-wide text-sm uppercase">Refine Search</h2>
 
                 <!-- Search -->
                 <div>
-                    <label class="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2 block">Search</label>
+                    <label for="sidebar-search" class="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2 block">Search</label>
                     <div class="relative">
-                        <input type="text" x-model="searchQuery" placeholder="Search models..." class="w-full bg-black/40 border border-white/20 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:border-viaje-400 focus:ring-1 focus:ring-viaje-400 transition placeholder-zinc-500 outline-none">
+                        <input id="sidebar-search" type="text" x-model="searchQuery" aria-label="Search models" placeholder="Search models..." class="w-full bg-black/40 border border-white/20 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:border-viaje-400 focus:ring-1 focus:ring-viaje-400 transition placeholder-zinc-400 outline-none">
                         <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 text-sm"></i>
                     </div>
                 </div>
 
                 <!-- Category -->
                 <div>
-                    <label class="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2 block">Category</label>
-                    <select x-model="selectedCategory" class="w-full bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-sm text-white focus:border-viaje-400 focus:ring-1 focus:ring-viaje-400 transition">
+                    <label for="sidebar-category" class="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2 block">Category</label>
+                    <select id="sidebar-category" x-model="selectedCategory" aria-label="Filter by vehicle category" class="w-full bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-sm text-white focus:border-viaje-400 focus:ring-1 focus:ring-viaje-400 transition">
                         <option value="all" class="bg-zinc-900 text-white">All Vehicles</option>
                         <option value="island" class="bg-zinc-900 text-white">Island 4x4</option>
                         <option value="suv" class="bg-zinc-900 text-white">SUVs</option>
@@ -497,16 +493,16 @@ $defaultCars = [
                 <!-- Price Slider -->
                 <div>
                     <div class="flex justify-between text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2 block">
-                        <span>Max Price</span>
+                        <label for="sidebar-price">Max Price</label>
                         <span class="text-viaje-400" x-text="'&#8369;' + formatPhp(maxPrice)"></span>
                     </div>
-                    <input type="range" min="2000" max="18000" step="500" x-model="maxPrice" class="w-full accent-viaje-500 h-2 bg-white/20 rounded-lg cursor-pointer">
+                    <input id="sidebar-price" type="range" min="2000" max="18000" step="500" x-model="maxPrice" aria-label="Maximum daily price" class="w-full accent-viaje-500 h-2 bg-white/20 rounded-lg cursor-pointer">
                 </div>
 
                 <!-- Sort By -->
                 <div>
-                    <label class="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2 block">Sort By</label>
-                    <select x-model="sortBy" class="w-full bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-sm text-white focus:border-viaje-400 focus:ring-1 focus:ring-viaje-400 transition">
+                    <label for="sidebar-sort" class="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2 block">Sort By</label>
+                    <select id="sidebar-sort" x-model="sortBy" aria-label="Sort vehicles by" class="w-full bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-sm text-white focus:border-viaje-400 focus:ring-1 focus:ring-viaje-400 transition">
                         <option value="recommended" class="bg-zinc-900 text-white">Recommended</option>
                         <option value="price-asc" class="bg-zinc-900 text-white">Price: Low to High</option>
                         <option value="price-desc" class="bg-zinc-900 text-white">Price: High to Low</option>
@@ -524,23 +520,24 @@ $defaultCars = [
             
             <!-- RIGHT CONTENT: FLEET GRID (70%) -->
             <div class="w-full lg:w-2/3 xl:w-3/4 animate-[fade-in-up_0.8s_ease-out_0.4s_forwards] opacity-0" id="fleet">
+                <h2 class="sr-only">Available Fleet</h2>
                 
                 <!-- ADVANCED FILTER BAR -->
                 <div class="glass-panel rounded-2xl p-4 mb-6 border border-white/10 relative z-30">
                     <div class="flex flex-col md:flex-row gap-4 items-end">
                         <!-- Search Bar -->
                         <div class="w-full md:w-1/3">
-                            <label class="block text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-1">Search Fleet</label>
+                            <label for="grid-search" class="block text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-1">Search Fleet</label>
                             <div class="relative">
                                 <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400"></i>
-                                <input type="text" x-model.debounce.300ms="searchQuery" placeholder="Try 'Fortuner' or 'SUV'..." class="w-full bg-black/20 border border-white/10 rounded-xl py-2 pl-9 pr-3 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-viaje-500 text-sm">
+                                <input id="grid-search" type="text" x-model.debounce.300ms="searchQuery" aria-label="Search fleet models" placeholder="Try 'Fortuner' or 'SUV'..." class="w-full bg-black/20 border border-white/10 rounded-xl py-2 pl-9 pr-3 text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-viaje-500 text-sm">
                             </div>
                         </div>
                         
                         <!-- Transmission -->
                         <div class="w-full md:w-1/6">
-                            <label class="block text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-1">Transmission</label>
-                            <select x-model="filterTransmission" class="w-full bg-black/20 border border-white/10 rounded-xl py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-viaje-500 text-sm appearance-none">
+                            <label for="grid-transmission" class="block text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-1">Transmission</label>
+                            <select id="grid-transmission" x-model="filterTransmission" aria-label="Filter by transmission" class="w-full bg-black/20 border border-white/10 rounded-xl py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-viaje-500 text-sm appearance-none">
                                 <option value="all" class="text-black">All Types</option>
                                 <option value="Automatic" class="text-black">Automatic</option>
                                 <option value="Manual" class="text-black">Manual</option>
@@ -549,8 +546,8 @@ $defaultCars = [
 
                         <!-- Fuel -->
                         <div class="w-full md:w-1/6">
-                            <label class="block text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-1">Fuel</label>
-                            <select x-model="filterFuel" class="w-full bg-black/20 border border-white/10 rounded-xl py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-viaje-500 text-sm appearance-none">
+                            <label for="grid-fuel" class="block text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-1">Fuel</label>
+                            <select id="grid-fuel" x-model="filterFuel" aria-label="Filter by fuel type" class="w-full bg-black/20 border border-white/10 rounded-xl py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-viaje-500 text-sm appearance-none">
                                 <option value="all" class="text-black">All Fuels</option>
                                 <option value="Diesel" class="text-black">Diesel</option>
                                 <option value="Gasoline" class="text-black">Gasoline</option>
@@ -561,10 +558,10 @@ $defaultCars = [
                         <!-- Max Price Slider -->
                         <div class="w-full md:w-1/4 pb-1">
                             <div class="flex justify-between items-center mb-1">
-                                <label class="block text-[10px] font-bold uppercase tracking-wider text-zinc-400">Max Budget</label>
-                                <span class="text-xs font-bold text-viaje-400">₱<span x-text="formatPhp(maxPrice)"></span></span>
+                                <label for="grid-budget" class="block text-[10px] font-bold uppercase tracking-wider text-zinc-400">Max Budget</label>
+                                <span class="text-xs font-bold text-viaje-400">&#8369;<span x-text="formatPhp(maxPrice)"></span></span>
                             </div>
-                            <input type="range" x-model="maxPrice" min="2000" max="25000" step="500" class="w-full h-1.5 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-viaje-500">
+                            <input id="grid-budget" type="range" x-model="maxPrice" min="2000" max="25000" step="500" aria-label="Filter by maximum budget" class="w-full h-1.5 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-viaje-500">
                         </div>
                         
                         <!-- Reset Button (Shows only if filtered) -->
@@ -584,7 +581,7 @@ $defaultCars = [
                             
                             <!-- Image -->
                             <div class="relative h-56 overflow-hidden">
-                                <img :src="car.image" :alt="car.name" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
+                                <img :src="car.image ? car.image.replace('w=1200', 'w=800&q=75') : ''" :alt="car.name" loading="lazy" decoding="async" width="400" height="224" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent"></div>
                                 
                                 <div class="absolute top-4 left-4">
@@ -607,7 +604,7 @@ $defaultCars = [
 
                                 <div class="mt-auto flex items-end justify-between pt-4 border-t border-white/5">
                                     <div>
-                                        <div class="text-[10px] text-zinc-500 uppercase tracking-widest font-bold mb-1">Daily Rate</div>
+                                        <div class="text-[10px] text-zinc-400 uppercase tracking-widest font-bold mb-1">Daily Rate</div>
                                         <div class="text-2xl font-black text-white"><span class="text-viaje-400 mr-1">&#8369;</span><span class="font-mono" x-text="formatPhp(car.dailyRate)"></span></div>
                                     </div>
                                     
@@ -690,7 +687,7 @@ $defaultCars = [
             
             <div class="relative z-10">
                 <div class="px-3 py-1 rounded-full bg-viaje-500/20 text-viaje-300 text-[10px] font-black uppercase tracking-widest inline-flex mb-3" x-text="'Step ' + bookingStep + ' of 4'"></div>
-                <h3 class="font-heading font-black text-3xl text-white mb-2" x-text="selectedCar?.name"></h3>
+                <div class="font-heading font-black text-3xl text-white mb-2" x-text="selectedCar?.name"></div>
                 <p class="text-viaje-400 font-bold text-lg mb-6">&#8369;<span x-text="formatPhp(selectedCar?.dailyRate)"></span> <span class="text-xs text-zinc-400 font-normal">/ day</span></p>
                 
                 <div class="space-y-3 text-xs text-zinc-300 font-medium">
@@ -725,8 +722,8 @@ $defaultCars = [
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2 block">Pick-up Location</label>
-                        <select x-model="trip.pickupLocation" @change="checkAvailability()" class="w-full bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-sm text-white focus:border-viaje-400 focus:ring-1 focus:ring-viaje-400 outline-none transition appearance-none">
+                        <label for="modal-pickup-location" class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2 block">Pick-up Location</label>
+                        <select id="modal-pickup-location" x-model="trip.pickupLocation" @change="checkAvailability()" aria-label="Pick-up location" class="w-full bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-sm text-white focus:border-viaje-400 focus:ring-1 focus:ring-viaje-400 outline-none transition appearance-none">
                             <option value="Mandaluyong Warehouse" class="bg-zinc-900 text-white">Mandaluyong Warehouse (Free)</option>
                             <option value="NAIA Terminal 1,2,3,4" class="bg-zinc-900 text-white">NAIA Terminal 1-4 (+&#8369;250)</option>
                             <option value="SM Megamall" class="bg-zinc-900 text-white">SM Megamall (+&#8369;250)</option>
@@ -735,8 +732,8 @@ $defaultCars = [
                         </select>
                     </div>
                     <div>
-                        <label class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2 block">Drop-off Location</label>
-                        <select x-model="trip.dropoffLocation" @change="checkAvailability()" class="w-full bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-sm text-white focus:border-viaje-400 focus:ring-1 focus:ring-viaje-400 outline-none transition appearance-none">
+                        <label for="modal-dropoff-location" class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2 block">Drop-off Location</label>
+                        <select id="modal-dropoff-location" x-model="trip.dropoffLocation" @change="checkAvailability()" aria-label="Drop-off location" class="w-full bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-sm text-white focus:border-viaje-400 focus:ring-1 focus:ring-viaje-400 outline-none transition appearance-none">
                             <option value="Mandaluyong Warehouse" class="bg-zinc-900 text-white">Mandaluyong Warehouse (Free)</option>
                             <option value="NAIA Terminal 1,2,3,4" class="bg-zinc-900 text-white">NAIA Terminal 1-4 (+&#8369;250)</option>
                             <option value="SM Megamall" class="bg-zinc-900 text-white">SM Megamall (+&#8369;250)</option>
@@ -748,12 +745,12 @@ $defaultCars = [
 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2 block">Pick-up Date</label>
-                        <input type="text" x-ref="pickupInput" class="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-viaje-400 outline-none placeholder-zinc-500" placeholder="MM/DD/YYYY">
+                        <label for="modal-pickup-date" class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2 block">Pick-up Date</label>
+                        <input id="modal-pickup-date" type="text" x-ref="pickupInput" aria-label="Pick-up date" class="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-viaje-400 outline-none placeholder-zinc-400" placeholder="MM/DD/YYYY">
                     </div>
                     <div>
-                        <label class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2 block">Drop-off Date</label>
-                        <input type="text" x-ref="dropoffInput" class="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-viaje-400 outline-none placeholder-zinc-500" placeholder="MM/DD/YYYY">
+                        <label for="modal-dropoff-date" class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2 block">Drop-off Date</label>
+                        <input id="modal-dropoff-date" type="text" x-ref="dropoffInput" aria-label="Drop-off date" class="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-viaje-400 outline-none placeholder-zinc-400" placeholder="MM/DD/YYYY">
                     </div>
                 </div>
 
@@ -804,16 +801,16 @@ $defaultCars = [
 
                 <div class="space-y-4">
                     <div>
-                        <label class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-1.5 block">Full Name *</label>
-                        <input type="text" x-model="renter.name" placeholder="e.g. Juan Dela Cruz" required class="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-viaje-400 outline-none">
+                        <label for="modal-renter-name" class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-1.5 block">Full Name *</label>
+                        <input id="modal-renter-name" type="text" x-model="renter.name" aria-label="Full name" placeholder="e.g. Juan Dela Cruz" required class="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-viaje-400 outline-none">
                     </div>
                     <div>
-                        <label class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-1.5 block">Email Address *</label>
-                        <input type="email" x-model="renter.email" placeholder="e.g. juan@example.com" required class="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-viaje-400 outline-none">
+                        <label for="modal-renter-email" class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-1.5 block">Email Address *</label>
+                        <input id="modal-renter-email" type="email" x-model="renter.email" aria-label="Email address" placeholder="e.g. juan@example.com" required class="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-viaje-400 outline-none">
                     </div>
                     <div>
-                        <label class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-1.5 block">Mobile / WhatsApp Number</label>
-                        <input type="tel" x-model="renter.phone" placeholder="+63 9XX XXX XXXX" class="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-viaje-400 outline-none">
+                        <label for="modal-renter-phone" class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-1.5 block">Mobile / WhatsApp Number</label>
+                        <input id="modal-renter-phone" type="tel" x-model="renter.phone" aria-label="Mobile or WhatsApp number" placeholder="+63 9XX XXX XXXX" class="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-viaje-400 outline-none">
                     </div>
                     <div>
                         <label class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-1.5 block">Payment Method</label>
@@ -847,7 +844,7 @@ $defaultCars = [
                                         Stripe Payment Gateway
                                         <span class="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-mono">Hosted Checkout</span>
                                     </p>
-                                    <p class="text-[11px] text-zinc-400">Itemized line items • Visa, Mastercard, AMEX, Apple Pay</p>
+                                    <p class="text-[11px] text-zinc-400">Itemized line items &bull; Visa, Mastercard, AMEX, Apple Pay</p>
                                 </div>
                             </div>
                             <i class="fa-solid fa-lock text-viaje-400 text-xs"></i>
@@ -870,6 +867,7 @@ $defaultCars = [
 
             <!-- STEP 3.5: Fake Payment Gateway -->
             <div x-show="bookingStep === 'payment_processing'" class="py-12 flex flex-col items-center justify-center" x-cloak>
+                <h2 class="sr-only">Payment Processing Status</h2>
                 <template x-if="paymentMethod === 'gcash'">
                     <div class="w-full max-w-sm mx-auto text-center">
                         <div class="w-24 h-24 mx-auto bg-blue-500 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_40px_rgba(59,130,246,0.3)] relative overflow-hidden">
@@ -883,7 +881,7 @@ $defaultCars = [
                         <div class="w-full bg-zinc-800/50 rounded-full h-1.5 mb-2 overflow-hidden">
                             <div class="bg-blue-500 h-1.5 rounded-full transition-all duration-300" :style="'width: ' + processingProgress + '%'"></div>
                         </div>
-                        <p class="text-xs text-zinc-500">Do not close this window</p>
+                        <p class="text-xs text-zinc-400">Do not close this window</p>
                     </div>
                 </template>
                 
@@ -934,6 +932,7 @@ $defaultCars = [
         </div>
         
         <div class="max-w-[1400px] mx-auto px-6 relative z-10">
+            <h2 class="sr-only">Fleet and Support Links</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-16 mb-20">
                 
                 <!-- Brand Info -->
@@ -1012,185 +1011,8 @@ $defaultCars = [
             </div>
         </div>
     </footer>
-@php
-$defaultCars = [
-    [
-        'id' => 1,
-        'name' => 'Suzuki Jimny AllGrip 4x4',
-        'category' => 'island',
-        'categoryName' => 'Island 4x4',
-        'dailyRate' => 2799,
-        'rating' => 4.99,
-        'reviews' => 215,
-        'seats' => 4,
-        'bags' => 2,
-        'transmission' => 'Automatic',
-        'fuel' => 'Petrol',
-        'eco' => '14 km/L',
-        'image' => 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=75&w=800&auto=format&fit=crop',
-        'badge' => 'Island Favorite',
-        'badgeColor' => 'bg-zinc-800 text-zinc-300 border border-zinc-700',
-    ],
-    [
-        'id' => 2,
-        'name' => 'Toyota HiAce Super Grandia VIP',
-        'category' => 'van',
-        'categoryName' => 'Executive Van',
-        'dailyRate' => 6499,
-        'rating' => 4.98,
-        'reviews' => 320,
-        'seats' => 10,
-        'bags' => 7,
-        'transmission' => 'Automatic',
-        'fuel' => 'Diesel',
-        'eco' => '11 km/L',
-        'image' => 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=75&w=800&auto=format&fit=crop',
-        'badge' => 'Balikbayan Choice',
-        'badgeColor' => 'bg-viaje-500',
-    ],
-    [
-        'id' => 3,
-        'name' => 'Toyota Fortuner GR-Sport 4x4',
-        'category' => 'suv',
-        'categoryName' => '7-Seater 4x4 SUV',
-        'dailyRate' => 4199,
-        'rating' => 4.97,
-        'reviews' => 180,
-        'seats' => 7,
-        'bags' => 5,
-        'transmission' => 'Automatic',
-        'fuel' => 'Diesel',
-        'eco' => '13 km/L',
-        'image' => 'https://images.unsplash.com/photo-1520031441872-265e4ff70366?q=75&w=800&auto=format&fit=crop',
-        'badge' => 'Provincial Cruiser',
-        'badgeColor' => 'bg-zinc-800 text-zinc-300 border border-zinc-700',
-    ],
-    [
-        'id' => 4,
-        'name' => 'Toyota Land Cruiser Prado VX',
-        'category' => 'luxury',
-        'categoryName' => 'VIP Luxury 4x4',
-        'dailyRate' => 14500,
-        'rating' => 5.00,
-        'reviews' => 64,
-        'seats' => 7,
-        'bags' => 6,
-        'transmission' => 'Automatic',
-        'fuel' => 'Diesel',
-        'eco' => '10 km/L',
-        'image' => 'https://images.unsplash.com/photo-1563720223185-11003d516935?q=75&w=800&auto=format&fit=crop',
-        'badge' => 'Presidential VIP',
-        'badgeColor' => 'bg-zinc-800 text-zinc-300 border border-zinc-700',
-    ],
-    [
-        'id' => 5,
-        'name' => 'Ford Everest Titanium 4x4',
-        'category' => 'suv',
-        'categoryName' => '7-Seater SUV',
-        'dailyRate' => 4499,
-        'rating' => 4.95,
-        'reviews' => 142,
-        'seats' => 7,
-        'bags' => 5,
-        'transmission' => 'Automatic',
-        'fuel' => 'Diesel',
-        'eco' => '12 km/L',
-        'image' => 'https://images.unsplash.com/photo-1550355291-bbee04a92027?q=75&w=800&auto=format&fit=crop',
-        'badge' => 'Family Comfort',
-        'badgeColor' => 'bg-viaje-500',
-    ],
-    [
-        'id' => 6,
-        'name' => 'Hyundai Staria Lounge 7-Seater',
-        'category' => 'van',
-        'categoryName' => 'Futuristic VIP Van',
-        'dailyRate' => 6999,
-        'rating' => 4.98,
-        'reviews' => 95,
-        'seats' => 7,
-        'bags' => 6,
-        'transmission' => 'Automatic',
-        'fuel' => 'Diesel',
-        'eco' => '12 km/L',
-        'image' => 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=75&w=800&auto=format&fit=crop',
-        'badge' => 'Captain Seats',
-        'badgeColor' => 'bg-zinc-800 text-zinc-300 border border-zinc-700',
-    ],
-    [
-        'id' => 7,
-        'name' => 'Toyota Innova Zenix Hybrid',
-        'category' => 'electric',
-        'categoryName' => 'Hybrid 7-Seater',
-        'dailyRate' => 3499,
-        'rating' => 4.93,
-        'reviews' => 210,
-        'seats' => 7,
-        'bags' => 4,
-        'transmission' => 'Automatic',
-        'fuel' => 'Hybrid',
-        'eco' => '23 km/L',
-        'image' => 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=75&w=800&auto=format&fit=crop',
-        'badge' => 'Ultra Efficient',
-        'badgeColor' => 'bg-viaje-500',
-    ],
-    [
-        'id' => 8,
-        'name' => 'BYD Atto 3 Extended Range',
-        'category' => 'electric',
-        'categoryName' => 'Pure Electric Crossover',
-        'dailyRate' => 3899,
-        'rating' => 4.94,
-        'reviews' => 78,
-        'seats' => 5,
-        'bags' => 4,
-        'transmission' => 'Automatic',
-        'fuel' => 'Electric',
-        'eco' => '480 km Range',
-        'image' => 'https://images.unsplash.com/photo-1617788138017-80ad40651399?q=75&w=800&auto=format&fit=crop',
-        'badge' => 'Zero Emission',
-        'badgeColor' => 'bg-viaje-500',
-    ],
-    [
-        'id' => 9,
-        'name' => 'Nissan Navara PRO-4X Offroad',
-        'category' => 'island',
-        'categoryName' => '4x4 Double Cab',
-        'dailyRate' => 3699,
-        'rating' => 4.96,
-        'reviews' => 132,
-        'seats' => 5,
-        'bags' => 6,
-        'transmission' => 'Automatic',
-        'fuel' => 'Diesel',
-        'eco' => '13 km/L',
-        'image' => 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=75&w=800&auto=format&fit=crop',
-        'badge' => 'Adventure 4x4',
-        'badgeColor' => 'bg-zinc-800 text-zinc-300 border border-zinc-700',
-    ],
-];
-@endphp
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>VIAJE | Tropical Car Rental & Island Road Trips Philippines</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
-    
-        <!-- Flatpickr for mm/dd/yyyy formatting -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Tailwind CSS with Tropical Philippine Theme -->
-    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- JAVASCRIPT: ALPINE.JS DATA STORE -->
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.data('viajeRentalApp', () => ({
