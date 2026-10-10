@@ -33,4 +33,15 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
+// Staging & Client Demo Sandbox Routes
+Route::prefix('staging')->name('staging.')->group(function () {
+    Route::get('/login/admin', [\App\Http\Controllers\StagingDemoAuthController::class, 'loginAdmin'])
+        ->name('login.admin');
+    Route::post('/database/reset', [\App\Http\Controllers\StagingDemoAuthController::class, 'resetDatabase'])
+        ->middleware('throttle:6,1')
+        ->name('database.reset');
+    Route::get('/status', [\App\Http\Controllers\StagingDemoAuthController::class, 'status'])
+        ->name('status');
+});
+
 require __DIR__.'/auth.php';

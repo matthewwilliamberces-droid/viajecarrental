@@ -40,6 +40,8 @@
             </main>
         </div>
         
+        <x-staging-demo-bar />
+
         @stack('scripts')
     </body>
 </html>

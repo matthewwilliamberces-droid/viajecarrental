@@ -1647,5 +1647,7 @@ $defaultCars = [
                 }
             }));
     </script>
+
+    <x-staging-demo-bar />
 </body>
 </html>

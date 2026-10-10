@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Laravel VPS Production Deployment Specification</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 12mm 14mm 12mm 14mm;
+  }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1e293b;
+    background: #ffffff;
+    font-size: 10.5pt;
+    line-height: 1.45;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .header {
+    border-bottom: 2px solid #0f172a;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .header h1 {
+    font-size: 17pt;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+  }
+  .header .subtitle {
+    font-size: 9.5pt;
+    color: #059669;
+    font-weight: 700;
+    margin-top: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .header .meta {
+    text-align: right;
+    font-size: 8.5pt;
+    color: #64748b;
+    line-height: 1.3;
+  }
+  .badge {
+    display: inline-block;
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 7.5pt;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-emerald {
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+  }
+  .section-title {
+    font-size: 11pt;
+    font-weight: 800;
+    color: #0f172a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-left: 3px solid #059669;
+    padding-left: 8px;
+    margin: 12px 0 6px 0;
+  }
+  p {
+    margin-bottom: 6px;
+    font-size: 9pt;
+    color: #334155;
+  }
+  .arch-diagram {
+    background: #0f172a;
+    color: #f8fafc;
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 8pt;
+    line-height: 1.45;
+  }
+  .arch-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .card {
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 8px 10px;
+    background: #f8fafc;
+  }
+  .card h3 {
+    font-size: 9pt;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .card p {
+    font-size: 8pt;
+    color: #475569;
+    margin-bottom: 0;
+    line-height: 1.35;
+  }
+  .checklist {
+    list-style: none;
+    margin-bottom: 10px;
+  }
+  .checklist li {
+    font-size: 8.5pt;
+    color: #1e293b;
+    padding: 4px 6px;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .checklist li:nth-child(even) {
+    background: #f8fafc;
+  }
+  .checklist .check-icon {
+    color: #059669;
+    font-weight: 800;
+    font-size: 9pt;
+  }
+  .checklist strong {
+    color: #0f172a;
+    font-size: 8.5pt;
+  }
+  .code-block {
+    background: #1e293b;
+    color: #a7f3d0;
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 7.5pt;
+    margin: 4px 0 8px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8pt;
+    margin: 6px 0 8px 0;
+  }
+  th {
+    background: #0f172a;
+    color: #ffffff;
+    font-weight: 700;
+    text-align: left;
+    padding: 5px 6px;
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  td {
+    padding: 4px 6px;
+    border-bottom: 1px solid #e2e8f0;
+    color: #334155;
+  }
+  tr:nth-child(even) td {
+    background: #f8fafc;
+  }
+  .footer {
+    border-top: 1px solid #cbd5e1;
+    padding-top: 6px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 7.5pt;
+    color: #64748b;
+  }
+  .page-break {
+    page-break-after: always;
+    break-after: page;
+  }
+  .callout-box {
+    background: #ecfdf5;
+    border-left: 3px solid #059669;
+    padding: 8px 12px;
+    border-radius: 0 4px 4px 0;
+    margin: 10px 0;
+  }
+  .callout-box p {
+    font-size: 8.5pt;
+    color: #065f46;
+    margin-bottom: 0;
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="header">
+  <div>
+    <h1>Production Laravel VPS Deployment</h1>
+    <div class="subtitle">Architecture & Security Runbook &bull; Standard Specification</div>
+  </div>
+  <div class="meta">
+    <span class="badge">Enterprise Runbook</span><br>
+    Hetzner & DigitalOcean Linux VPS<br>
+    Docker &bull; Coolify &bull; Auto-SSL
+  </div>
+</div>
+
+<div class="callout-box">
+  <p><strong>Standard Architecture Directive:</strong> Deployed 100% directly onto client-owned cloud hardware. Eliminates vendor lock-in, cuts monthly AWS/PaaS hosting bills by ~80%, and guarantees complete data sovereignty.</p>
+</div>
+
+<div class="section-title">1. Production Infrastructure Architecture</div>
+
+<div class="arch-diagram">
+[ Client Domain ] ---> [ Cloudflare Edge Proxy & WAF (Optional) ]
+                                |
+                                v (Port 80 / 443)
+              [ Linux VPS Host (Ubuntu 24.04 LTS) ]
+              [ UFW Firewall: 22, 80, 443 Only ]
+                                |
+                                v
+               [ Traefik / Nginx Reverse Proxy ]
+               [ Auto-Renewing Let's Encrypt SSL ]
+                                |
+           +--------------------+--------------------+
+           | (Internal Docker Network Bridge)       |
+           v                                         v
+ [ Laravel 11/12 Web Container ]          [ Isolated Database Container ]
+ [ Nixpacks / PHP-FPM / OPcache]          [ PostgreSQL 16 / MySQL 8.4   ]
+ [ Redis Queue & Task Workers  ]          [ Named Persistent Volumes    ]
+</div>
+
+<div class="arch-grid">
+  <div class="card">
+    <h3>&bull; Dedicated NVMe I/O Performance</h3>
+    <p>Unlike shared PaaS containers that throttle CPU cycles, a dedicated Linux VPS (e.g. Hetzner CX22) provides dedicated vCPU execution and NVMe disk speeds for sub-50ms TTFB.</p>
+  </div>
+  <div class="card">
+    <h3>&bull; Isolated Private Docker Network</h3>
+    <p>Database (PostgreSQL/MySQL) and Redis instances are bound strictly to internal Docker bridge sockets. Database ports (5432 / 3306) are never exposed to the public internet.</p>
+  </div>
+</div>
+
+<div class="section-title">2. The 7-Stage Production Hardening Protocol</div>
+
+<ul class="checklist">
+  <li>
+    <span class="check-icon">&#10003;</span>
+    <div>
+      <strong>Stage 1: Base Linux OS Hardening & User Privilege:</strong>
+      Clean Ubuntu 22.04/24.04 LTS provisioning, automated security patching (unattended-upgrades), non-root execution, and hardened SSH configuration.
+    </div>
+  </li>
+  <li>
+    <span class="check-icon">&#10003;</span>
+    <div>
+      <strong>Stage 2: UFW Firewall & Network Lockdown:</strong>
+      Default-deny incoming traffic policy. Explicitly white-lists ports 22 (SSH), 80 (HTTP), and 443 (HTTPS). Blocks all direct external access to databases, Redis, and internal telemetry.
+    </div>
+  </li>
+  <li>
+    <span class="check-icon">&#10003;</span>
+    <div>
+      <strong>Stage 3: Containerized PaaS Engine (Coolify + Docker):</strong>
+      Automated installation of isolated Docker daemon, Traefik edge reverse proxy, and self-hosted control plane for zero-overhead resource management.
+    </div>
+  </li>
+  <li>
+    <span class="check-icon">&#10003;</span>
+    <div>
+      <strong>Stage 4: Automated Let's Encrypt SSL & HTTP/2 Delivery:</strong>
+      Cryptographic verification via ACME challenges. Full HTTP/2 and TLS 1.3 encryption with automated 60-day auto-renewal daemons.
+    </div>
+  </li>
+  <li>
+    <span class="check-icon">&#10003;</span>
+    <div>
+      <strong>Stage 5: Persistent Volume Architecture & Disk Pruning:</strong>
+      Storage isolation via named Docker volumes preserving uploads across rebuilds. Weekly automated Docker pruning cron eliminating dangling images and cache bloat.
+    </div>
+  </li>
+  <li>
+    <span class="check-icon">&#10003;</span>
+    <div>
+      <strong>Stage 6: Zero-Downtime Git Push-to-Deploy Webhooks:</strong>
+      Direct repository integration via secure deploy keys. Pushes to production branches trigger automated container builds and atomic swaps with zero downtime.
+    </div>
+  </li>
+  <li>
+    <span class="check-icon">&#10003;</span>
+    <div>
+      <strong>Stage 7: Laravel Framework Production Tuning:</strong>
+      Execution of production optimization routines: configuration caching, route caching, event discovery, storage symlinking, and OPcache preloading.
+    </div>
+  </li>
+</ul>
+
+<div class="footer">
+  <span>Document Ref: SPEC-VPS-DEPLOY-V1</span>
+  <span>Exclusively on Fiverr &bull; Verified DevOps Delivery</span>
+  <span>Page 1 of 2</span>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PAGE 2 -->
+<div class="header">
+  <div>
+    <h1>Security, Backup & Delivery Governance</h1>
+    <div class="subtitle">Operational Runbook &bull; Client Handover Protocol</div>
+  </div>
+  <div class="meta">
+    <span class="badge badge-emerald">Zero Vendor Lock-In</span><br>
+    Full Data Sovereignty<br>
+    Production Verified
+  </div>
+</div>
+
+<div class="section-title">3. Production Optimization Commands</div>
+<p>Every deployed container is optimized for maximum throughput and minimal memory overhead during build:</p>
+
+<div class="code-block">
+# Production Framework Optimization Pipeline
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+php artisan event:cache
+php artisan storage:link
+php artisan migrate --force
+
+# Automated Host Maintenance (Weekly Disk Health Cron)
+0 3 * * 0 docker system prune -af --volumes
+</div>
+
+<div class="section-title">4. Automated Off-Site Disaster Recovery (Premium)</div>
+<p>Production databases are never left vulnerable on a single physical host. In the Premium architecture, automated snapshot routines are configured to ship encrypted database dumps to S3-compatible cloud storage:</p>
+
+<div class="arch-grid">
+  <div class="card">
+    <h3>&bull; Daily Scheduled DB Dumps</h3>
+    <p>Automated database backup jobs execute every 24 hours during off-peak hours (03:00 UTC), gzipping SQL dumps directly from the container.</p>
+  </div>
+  <div class="card">
+    <h3>&bull; Off-Site Cloudflare R2 / AWS S3 Storage</h3>
+    <p>Dumps are pushed immediately to private, versioned bucket storage. In the event of catastrophic server hardware failure, full state can be restored in minutes.</p>
+  </div>
+</div>
+
+<div class="section-title">5. Client Security & Handover Protocol</div>
+<p>To eliminate developer dependency and guarantee client security, every completed deployment follows a strict 3-step security handover checklist:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Security Step</th>
+      <th>Client Action Required Upon Delivery</th>
+      <th>Security Benefit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1. Root Password Rotation</strong></td>
+      <td>Client logs in via SSH and executes <code>passwd</code> to set a private master root password.</td>
+      <td>Ensures only the business owner holds master server credentials.</td>
+    </tr>
+    <tr>
+      <td><strong>2. Temporary SSH Key Revocation</strong></td>
+      <td>Remove contractor SSH public keys from <code>~/.ssh/authorized_keys</code> with one command.</td>
+      <td>Eliminates ongoing external SSH access; locks down host access completely.</td>
+    </tr>
+    <tr>
+      <td><strong>3. Coolify Master Admin Password</strong></td>
+      <td>Log into the web dashboard and rotate the administrator email and master password.</td>
+      <td>Grants 100% control over applications, container logs, and deployment webhooks.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="section-title">6. Package Deliverables Matrix</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scope Item</th>
+      <th>Basic ($45)</th>
+      <th>Standard ($95)</th>
+      <th>Premium ($175)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SSL Certificate Repair / Nginx Configuration Fix</td>
+      <td>&#10003; Included</td>
+      <td>&#10003; Included</td>
+      <td>&#10003; Included</td>
+    </tr>
+    <tr>
+      <td>Clean Linux OS Provisioning & Docker Engine Setup</td>
+      <td>&mdash;</td>
+      <td>&#10003; Included</td>
+      <td>&#10003; Included</td>
+    </tr>
+    <tr>
+      <td>Coolify Self-Hosted Control Plane Installation</td>
+      <td>&mdash;</td>
+      <td>&#10003; Included</td>
+      <td>&#10003; Included</td>
+    </tr>
+    <tr>
+      <td>Full Laravel Application Deployment (1 Live Domain)</td>
+      <td>&mdash;</td>
+      <td>&#10003; Included</td>
+      <td>&#10003; Included</td>
+    </tr>
+    <tr>
+      <td>Isolated PostgreSQL / MySQL Container Database</td>
+      <td>&mdash;</td>
+      <td>&#10003; Included</td>
+      <td>&#10003; Included</td>
+    </tr>
+    <tr>
+      <td>UFW Host Firewall Lockdown & Port Security</td>
+      <td>&mdash;</td>
+      <td>&#10003; Included</td>
+      <td>&#10003; Included</td>
+    </tr>
+    <tr>
+      <td>Automated Git Push-to-Deploy Webhooks</td>
+      <td>&mdash;</td>
+      <td>&#10003; Included</td>
+      <td>&#10003; Included</td>
+    </tr>
+    <tr>
+      <td>Redis Cache & Asynchronous Queue Worker Setup</td>
+      <td>&mdash;</td>
+      <td>&mdash;</td>
+      <td>&#10003; Included</td>
+    </tr>
+    <tr>
+      <td>Automated Daily S3 / Cloudflare R2 Database Backups</td>
+      <td>&mdash;</td>
+      <td>&mdash;</td>
+      <td>&#10003; Included</td>
+    </tr>
+    <tr>
+      <td>Written Architecture Handover & Security Runbook</td>
+      <td>Optional Extra</td>
+      <td>&#10003; Included</td>
+      <td>&#10003; Included</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer">
+  <span>Document Ref: SPEC-VPS-DEPLOY-V1</span>
+  <span>Exclusively on Fiverr &bull; Verified DevOps Delivery</span>
+  <span>Page 2 of 2</span>
+</div>
+
+</body>
+</html>

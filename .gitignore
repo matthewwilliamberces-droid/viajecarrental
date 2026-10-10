@@ -27,6 +27,7 @@ Homestead.yaml
 Thumbs.db
 /database/*.sqlite
 /database/*.sqlite-backup
+/database/*.sqlite.template
 /scratch
 mailgun_list.csv
 /public/portfolio_videos

@@ -33,6 +33,9 @@ new class extends Component
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('home')" class="text-viaje-600 dark:text-viaje-400 font-bold hover:text-viaje-500">
+                        <i class="fa-solid fa-arrow-left mr-1.5 text-xs"></i> {{ __('Return to Website') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -58,6 +61,10 @@ new class extends Component
                     </x-slot>
 
                     <x-slot name="content">
+                        <x-dropdown-link :href="route('home')">
+                            <i class="fa-solid fa-house mr-1.5 text-viaje-400"></i> {{ __('Return to Website') }}
+                        </x-dropdown-link>
+
                         <x-dropdown-link :href="route('profile')" wire:navigate>
                             {{ __('Profile') }}
                         </x-dropdown-link>
@@ -89,6 +96,9 @@ new class extends Component
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('home')">
+                <i class="fa-solid fa-arrow-left mr-1.5 text-xs text-viaje-400"></i> {{ __('Return to Website') }}
             </x-responsive-nav-link>
         </div>
 
