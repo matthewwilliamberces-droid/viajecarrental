@@ -15,8 +15,8 @@ class DemoMode
             return filter_var($configured, FILTER_VALIDATE_BOOLEAN);
         }
 
-        // 2. Automatically enabled in local, staging, and demo environments
-        if (app()->environment(['local', 'staging', 'demo'])) {
+        // 2. Automatically enabled in local, staging, demo, and testing environments
+        if (app()->environment(['local', 'staging', 'demo', 'testing'])) {
             return true;
         }
 
