@@ -21,15 +21,6 @@ class DemoMode
         }
 
         // 3. Automatically enabled on configured demo/portfolio domains
-        $host = '';
-        try {
-            if (request() && request()->hasHeader('Host')) {
-                $host = request()->getHost();
-            }
-        } catch (\Throwable $e) {
-            $host = '';
-        }
-
         $demoDomains = config('app.demo_domains', [
             'viaje.matthewberces.dev',
             'demo.',
@@ -39,10 +30,31 @@ class DemoMode
             'viajecarrental.test',
         ]);
 
+        $appUrl = (string) config('app.url', '');
         foreach ($demoDomains as $domain) {
-            if ($host && str_contains($host, $domain)) {
+            if ($appUrl !== '' && str_contains($appUrl, $domain)) {
                 return true;
             }
+        }
+
+        try {
+            if (request()) {
+                $host = (string) request()->getHost();
+                $forwardedHost = (string) request()->header('X-Forwarded-Host', '');
+                $httpHost = (string) request()->server('HTTP_HOST', '');
+
+                foreach ($demoDomains as $domain) {
+                    if (
+                        ($host !== '' && str_contains($host, $domain)) ||
+                        ($forwardedHost !== '' && str_contains($forwardedHost, $domain)) ||
+                        ($httpHost !== '' && str_contains($httpHost, $domain))
+                    ) {
+                        return true;
+                    }
+                }
+            }
+        } catch (\Throwable $e) {
+            // Ignored in console/CLI
         }
 
         return false;
