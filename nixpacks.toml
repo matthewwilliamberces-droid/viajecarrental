@@ -1,7 +1,16 @@
 # Nixpacks Configuration for VIAJE Car Rental
-# Includes hot-patch mitigations for PHP2Shell (CVE-2026-109618 & CVE-2026-109619)
+# Includes hot-patch mitigations and nixpkgsArchive pin for PHP2Shell (CVE-2026-109618 & CVE-2026-109619)
 
 [phases.setup]
+nixpkgsArchive = "02c087f3fe673c9e317f206a627cb6b910336dbe"
 cmds = [
-    'PHP_INI_PATH=$(php --ini | grep "Additional .ini files parsed:" | cut -d: -f2 | tr -d " ") && echo "session.upload_progress.enabled = Off" >> "$PHP_INI_PATH" && echo "session.upload_progress.cleanup = Off" >> "$PHP_INI_PATH"'
+    "...",
+    'PHP_INI_PATH=$(php --ini | grep "Additional .ini files parsed:" | cut -d: -f2 | tr -d " ") && if [ -n "$PHP_INI_PATH" ] && [ -f "$PHP_INI_PATH" ]; then echo "session.upload_progress.enabled = Off" >> "$PHP_INI_PATH" && echo "session.upload_progress.cleanup = Off" >> "$PHP_INI_PATH" && echo "expose_php = Off" >> "$PHP_INI_PATH"; fi',
+    'if [ -f /assets/php-fpm.conf ]; then echo "php_admin_flag[session.upload_progress.enabled] = off" >> /assets/php-fpm.conf && echo "php_admin_flag[expose_php] = off" >> /assets/php-fpm.conf; fi'
+]
+
+[phases.build]
+cmds = [
+    "...",
+    'if [ -f /assets/php-fpm.conf ]; then echo "php_admin_flag[session.upload_progress.enabled] = off" >> /assets/php-fpm.conf && echo "php_admin_flag[expose_php] = off" >> /assets/php-fpm.conf; fi'
 ]
