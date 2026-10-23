@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Taiwan Top Travel — Engineering & Technical Architecture Specification</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 10mm 12mm 10mm 12mm;
+  }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1e293b;
+    background: #ffffff;
+    font-size: 8.8pt;
+    line-height: 1.38;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    page-break-after: always;
+    height: 100%;
+    position: relative;
+    padding-bottom: 25px;
+  }
+  .page:last-child {
+    page-break-after: avoid;
+  }
+
+  /* Header */
+  .header-card {
+    background: #0a0b0e;
+    color: #ffffff;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    border: 1px solid #1e293b;
+  }
+  .header-tag {
+    display: inline-block;
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    font-size: 7pt;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 5px;
+  }
+  .header-title {
+    font-size: 19pt;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    margin-bottom: 3px;
+  }
+  .header-subtitle {
+    font-size: 8.5pt;
+    color: #94a3b8;
+    margin-bottom: 12px;
+  }
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    border-top: 1px solid #27272a;
+    padding-top: 10px;
+  }
+  .metric-item {
+    background: #121318;
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #27272a;
+  }
+  .metric-label {
+    font-size: 6.8pt;
+    font-weight: 700;
+    color: #a1a1aa;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+  .metric-value {
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: #f4f4f5;
+  }
+  .metric-value.highlight {
+    color: #10b981;
+  }
+
+  /* Section Styling */
+  .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 10pt;
+    font-weight: 800;
+    color: #09090b;
+    margin: 10px 0 6px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .section-bar {
+    width: 3.5px;
+    height: 13px;
+    background: #d4af37;
+    border-radius: 2px;
+  }
+  .lead-text {
+    font-size: 8.5pt;
+    color: #334155;
+    line-height: 1.42;
+    margin-bottom: 8px;
+    text-align: justify;
+  }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 4px;
+    margin-bottom: 10px;
+    font-size: 8pt;
+  }
+  th {
+    background: #f1f5f9;
+    color: #0f172a;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 7.2pt;
+    letter-spacing: 0.4px;
+    padding: 6px 8px;
+    border: 1px solid #e2e8f0;
+    text-align: left;
+  }
+  td {
+    padding: 5.5px 8px;
+    border: 1px solid #e2e8f0;
+    color: #334155;
+    vertical-align: top;
+    line-height: 1.35;
+  }
+  tr:nth-child(even) td {
+    background: #fafafa;
+  }
+  .td-bold {
+    font-weight: 700;
+    color: #09090b;
+    white-space: nowrap;
+  }
+  .code-token {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 7.5pt;
+    color: #0284c7;
+    background: #f0f9ff;
+    padding: 1px 4px;
+    border-radius: 3px;
+    border: 1px solid #e0f2fe;
+  }
+
+  /* Features Grid */
+  .features-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .feature-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 5px;
+    padding: 8px 10px;
+    background: #ffffff;
+  }
+  .feature-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3px;
+  }
+  .feature-title {
+    font-size: 8.4pt;
+    font-weight: 800;
+    color: #0f172a;
+  }
+  .badge {
+    font-size: 6.8pt;
+    font-weight: 700;
+    padding: 1.5px 5.5px;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+  .badge-emerald { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+  .badge-blue { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+  .badge-amber { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+  .badge-indigo { background: #eef2ff; color: #4338ca; border: 1px solid #c7d2fe; }
+
+  .feature-desc {
+    font-size: 7.8pt;
+    color: #475569;
+    line-height: 1.34;
+  }
+
+  /* Optimization Results Table */
+  .pill-metric {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 7.2pt;
+    text-align: center;
+  }
+  .pill-green { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+
+  /* Footer */
+  .footer-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 7.2pt;
+    color: #94a3b8;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 5px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- PAGE 1 -->
+  <div class="page">
+    <div class="header-card">
+      <div class="header-tag">Engineering & Technical Architecture Specification</div>
+      <div class="header-title">Taiwan Top Travel</div>
+      <div class="header-subtitle">Bespoke Ultra-Luxury Concierge Web Application — Features, Tech Stack & Performance Architecture</div>
+      <div class="metrics-grid">
+        <div class="metric-item">
+          <div class="metric-label">Framework</div>
+          <div class="metric-value">Astro v7 (SSG / Islands)</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-label">Styling Engine</div>
+          <div class="metric-value">Tailwind CSS v4</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-label">Production Quality</div>
+          <div class="metric-value">Clean SSR / Static Bundle</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-label">Lighthouse Score</div>
+          <div class="metric-value highlight">92+ Mobile / 95+ Desktop</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-heading">
+      <div class="section-bar"></div>
+      1. Executive Summary & Product Vision
+    </div>
+    <p class="lead-text">
+      <strong>Taiwan Top Travel</strong> is a high-performance bespoke luxury travel platform engineered specifically for High-Net-Worth Individuals (HNWIs) visiting Taiwan. The platform showcases 10 private curated circuits across Formosa—combining private helicopter traverses over Taroko National Park, high-altitude Alishan tea ceremonies, 3-Star Michelin dining reservations, and private Taiwan Shinkansen 700T high-speed rail charters.
+    </p>
+    <p class="lead-text">
+      Engineered around a zero-JS baseline and static-first architecture, the application delivers instant first-contentful paint, zero cumulative layout shifts (CLS: 0.00), and sub-second mobile Largest Contentful Paint (LCP) while powering rich client-side interactivity, dynamic trip pricing estimation, and transit animations.
+    </p>
+
+    <div class="section-heading">
+      <div class="section-bar"></div>
+      2. Complete Technology Stack & Toolchain
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 18%;">Layer</th>
+          <th style="width: 25%;">Technology</th>
+          <th style="width: 57%;">Engineering Role & Architectural Implementation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-bold">Core Framework</td>
+          <td><span class="code-token">Astro v7 (SSG)</span></td>
+          <td>Zero-JS static site generation (SSG) with Astro Islands. Bypasses client-side framework hydration overhead by pre-rendering pristine, static HTML and CSS.</td>
+        </tr>
+        <tr>
+          <td class="td-bold">Styling & Design</td>
+          <td><span class="code-token">Tailwind CSS v4</span><br><span class="code-token">@tailwindcss/vite</span></td>
+          <td>Utility-first CSS utilizing Tailwind v4's high-speed engine. Implements custom Obsidian (#0a0b0e) & Warm Gold (#d4af37) design tokens with zero CSS bloat.</td>
+        </tr>
+        <tr>
+          <td class="td-bold">Motion Engine</td>
+          <td><span class="code-token">Anime.js v4</span><br>Hardware Keyframes</td>
+          <td>GPU-accelerated CSS transforms and smooth physics interpolators driving the horizontal runway, station visualizer, and luxury hover transitions.</td>
+        </tr>
+        <tr>
+          <td class="td-bold">Asset Pipeline</td>
+          <td><span class="code-token">Sharp Engine</span><br>Next-Gen WebP</td>
+          <td>Automated image transcoding pipeline matching intrinsic viewport constraints (620x224 cards, 800px mobile hero), eliminating 141+ KiB of network payload.</td>
+        </tr>
+        <tr>
+          <td class="td-bold">Containerization</td>
+          <td><span class="code-token">Node.js LTS</span><br><span class="code-token">Nginx Alpine</span></td>
+          <td>Two-stage Dockerfile: Stage 1 builds static bundles via npm ci; Stage 2 serves assets through a production-hardened Nginx instance with Gzip enabled.</td>
+        </tr>
+        <tr>
+          <td class="td-bold">Edge Caching</td>
+          <td><span class="code-token">_headers</span><br><span class="code-token">nginx.conf</span></td>
+          <td>Universal multi-target caching configuration applying 1-year immutable caching (<span class="code-token">max-age=31536000, immutable</span>) for hashed bundles and media assets.</td>
+        </tr>
+        <tr>
+          <td class="td-bold">Testing & QA</td>
+          <td><span class="code-token">Playwright SDK</span><br><span class="code-token">Lighthouse CI</span></td>
+          <td>Automated headless browser validation across mobile/desktop viewports and end-to-end Core Web Vitals monitoring (LCP, CLS, TBT).</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="footer-bar">
+      <span>Fiverr Verified Portfolio Asset • Architecture Benchmark Dossier</span>
+      <span>Page 1 of 2</span>
+    </div>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div class="page">
+    <div class="section-heading" style="margin-top: 0;">
+      <div class="section-bar"></div>
+      3. Core Architectural Features & User Interfaces
+    </div>
+
+    <div class="features-container">
+      <div class="feature-card">
+        <div class="feature-top">
+          <span class="feature-title">1. Bespoke Hero & LCP Optimization</span>
+          <span class="badge badge-emerald">Above the Fold</span>
+        </div>
+        <p class="feature-desc">Features responsive preloaded WebP hero imagery (35 KiB) with high fetch priority. Displays verified credentials: 10 Master Circuits, 300 km/h Private HSR, 100% Tailor-Made, and 24/7 Concierge. Zero layout shift (CLS: 0.00).</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-top">
+          <span class="feature-title">2. Horizontal Curated Traverse Runway</span>
+          <span class="badge badge-blue">Interactive Carousel</span>
+        </div>
+        <p class="feature-desc">Pinned horizontal carousel presenting 10 curated circuits with drag/scroll navigation. Engineered with requestIdleCallback layout geometry measurement to eliminate 83ms of forced reflows during rapid user scrolling.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-top">
+          <span class="feature-title">3. Seasonality & Rhythm Matrix</span>
+          <span class="badge badge-amber">Micro-Climates</span>
+        </div>
+        <p class="feature-desc">Interactive 12-month micro-climate analyzer pairing seasons with master circuits. Utilizes zero-bundle inlined JavaScript (<span class="code-token">&lt;script is:inline define:vars&gt;</span>) to eliminate an 833ms critical request chain.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-top">
+          <span class="feature-title">4. High-Speed Rail Transit Visualizer</span>
+          <span class="badge badge-emerald">Infrastructure</span>
+        </div>
+        <p class="feature-desc">Interactive visualizer representing Taiwan's 350km Shinkansen 700T spine (300 km/h, 99.88% punctuality). Station node selectors update transit times, connecting luxury spurs, and high-visibility train background imagery (>50% visual contrast).</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-top">
+          <span class="feature-title">5. Dynamic Trip Cost Estimator</span>
+          <span class="badge badge-indigo">Client Calculator</span>
+        </div>
+        <p class="feature-desc">Interactive financial estimation tool. Clients configure journey duration (3–14 days), party size (Solo, Couple, Family, Group 6+), and luxury tiers (Private Signature vs. Ultra-Luxe Bespoke) to preview real-time investment estimates.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-top">
+          <span class="feature-title">6. Dedicated Circuit Dossiers</span>
+          <span class="badge badge-blue">Dynamic Routes</span>
+        </div>
+        <p class="feature-desc">Pre-rendered dynamic routes (<span class="code-token">/itineraries/[slug]</span>) for every circuit. Delivers day-by-day itineraries, luxury partner accommodation breakdowns (The Lalu, Silks Place Taroko, Mandarin Oriental), and high-resolution route maps.</p>
+      </div>
+    </div>
+
+    <div class="section-heading">
+      <div class="section-bar"></div>
+      4. Performance Engineering & Lighthouse Optimization Audit
+    </div>
+    <p class="lead-text">
+      The platform was subjected to intense optimization passes to eliminate mobile network bottlenecks and rendering stalls:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 20%;">Optimization Vector</th>
+          <th style="width: 28%;">Root Cause / Bottleneck</th>
+          <th style="width: 34%;">Engineering Solution Implemented</th>
+          <th style="width: 18%;">Measurable Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-bold">Critical Request Chain</td>
+          <td>Astro generated external JS chunk for SeasonalityMatrix, causing 833ms blocking modulepreload chain.</td>
+          <td>Inlined client code via <span class="code-token">&lt;script is:inline define:vars&gt;</span> and stripped TypeScript runtime annotations.</td>
+          <td><span class="pill-metric pill-green">-833ms Latency<br>Chain Eliminated</span></td>
+        </tr>
+        <tr>
+          <td class="td-bold">Layout Thrashing & Reflow</td>
+          <td>Simultaneous style.transform writes and scrollHeight reads triggered 83ms forced reflows.</td>
+          <td>Wrapped geometry reads in requestIdleCallback; decoupled scroll writes from layout reads.</td>
+          <td><span class="pill-metric pill-green">0ms Forced Reflow<br>Butter-smooth 60fps</span></td>
+        </tr>
+        <tr>
+          <td class="td-bold">Image Payload Overhead</td>
+          <td>Unsplash CDN and low-compression WebP images triggered Lighthouse "Improve image delivery" penalties.</td>
+          <td>Processed assets through Sharp with exact intrinsic dimensions (620x224) and optimized quality.</td>
+          <td><span class="pill-metric pill-green">-102 KiB Payload<br>55 KiB Max Card Size</span></td>
+        </tr>
+        <tr>
+          <td class="td-bold">Cache TTL Expiration</td>
+          <td>Hosting reverse proxy stripped Cache-Control headers on static images, returning Cache TTL: None.</td>
+          <td>Configured public/_headers (Cloudflare/Netlify) and vercel.json with 1-year immutable caching.</td>
+          <td><span class="pill-metric pill-green">1-Year TTL<br>Immutable Caching</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="footer-bar">
+      <span>Fiverr Verified Portfolio Asset • Architecture Benchmark Dossier</span>
+      <span>Page 2 of 2</span>
+    </div>
+  </div>
+
+</body>
+</html>

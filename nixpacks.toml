@@ -1,0 +1,7 @@
+# Nixpacks Configuration for VIAJE Car Rental
+# Includes hot-patch mitigations for PHP2Shell (CVE-2026-109618 & CVE-2026-109619)
+
+[phases.setup]
+cmds = [
+    'PHP_INI_PATH=$(php --ini | grep "Additional .ini files parsed:" | cut -d: -f2 | tr -d " ") && echo "session.upload_progress.enabled = Off" >> "$PHP_INI_PATH" && echo "session.upload_progress.cleanup = Off" >> "$PHP_INI_PATH"'
+]
