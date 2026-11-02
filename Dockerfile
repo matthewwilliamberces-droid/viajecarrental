@@ -104,7 +104,7 @@ RUN chmod +x /usr/local/bin/entrypoint.sh && \
     mkdir -p /var/log/supervisor /var/log/nginx /var/run/nginx && \
     chown -R www-data:www-data /var/log/nginx /var/run/nginx storage bootstrap/cache
 
-EXPOSE 80
+EXPOSE 80 8080
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
